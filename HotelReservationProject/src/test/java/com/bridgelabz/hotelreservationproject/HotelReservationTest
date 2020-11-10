@@ -32,4 +32,25 @@ public class HotelReservationTest {
         Assert.assertEquals(newHotel.weekendRate , 90);
     }
 
+@Test
+    public void givenDateRange_WhenAddedForHotel_ShouldReturnCheapestHotelName() {
+        HotelReservation hotelReservation = new HotelReservation();
+        ArrayList<Hotel> hotelArray = new ArrayList<>();
+        hotelArray.add(hotelReservation.addHotel("Lakewood" , "Normal" , 110  ));
+        hotelArray.add(hotelReservation.addHotel("Bridgewood" , "Normal" , 160 ));
+        hotelArray.add(hotelReservation.addHotel("Ridgewood" , "Normal" , 220  ));
+        Result cheapestHotel = hotelReservation.findCheapestHotel(hotelArray,"10092020" , "12092020");
+        Assert.assertEquals("Lakewood" , cheapestHotel.getHotelName() );
+    }
+
+    @Test
+    public void givenDateRange_WhenAddedForHotel_ShouldReturnCheapestHotelRate() {
+        HotelReservation hotelReservation = new HotelReservation();
+        ArrayList<Hotel> hotelArray = new ArrayList<>();
+        hotelArray.add(hotelReservation.addHotel("Lakewood" , "Normal" , 110  ));
+        hotelArray.add(hotelReservation.addHotel("Bridgewood" , "Normal" , 160  ));
+        hotelArray.add(hotelReservation.addHotel("Ridgewood" , "Normal" , 220  ));
+        Result cheapestHotel = hotelReservation.findCheapestHotel(hotelArray,"10092020" , "12092020");
+        Assert.assertEquals(220 , cheapestHotel.getTotalCost());
+    }
 }
