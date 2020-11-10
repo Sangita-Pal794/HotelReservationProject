@@ -1,4 +1,5 @@
 package com.bridgelabz.hotelreservationproject;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.*;
