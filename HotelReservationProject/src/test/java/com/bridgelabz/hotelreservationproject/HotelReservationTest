@@ -71,4 +71,16 @@ public class HotelReservationTest {
         Hotel hotel3 = hotelReservation.addHotel("Ridgewood" , "Normal" , 220 , 150 );
         Assert.assertEquals(50 , hotel2.getWeekendRate());
     }
+    
+    //Tests for verifying cheapest hotel details taking weekday and weekend rates into account
+    @Test
+    public void givenDateRange_WhenAddedForHotel_ShouldReturnCheapestHotelRateOnBasisOfWeekdaysAndWeekends() {
+        HotelReservation hotelReservation = new HotelReservation();
+        ArrayList<Hotel> hotelArray = new ArrayList<>();
+        hotelArray.add(hotelReservation.addHotel("Lakewood" , "Normal" , 110 , 90 ));
+        hotelArray.add(hotelReservation.addHotel("Bridgewood" , "Normal" , 160 , 50 ));
+        hotelArray.add(hotelReservation.addHotel("Ridgewood" , "Normal" , 220 , 150  ));
+        Result cheapestHotel = hotelReservation.findCheapestHotel(hotelArray , "2020-09-11" , "2020-09-14");
+        Assert.assertEquals("Lakewood" , cheapestHotel.getHotelName());
+    }
 }
