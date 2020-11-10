@@ -42,4 +42,17 @@ public class HotelReservation {
         result.setTotalCost(cheapestHotel.get().getCostWeekday());
         return result;
     }
+    
+    public Result cheapestBestRatedHotel(ArrayList<Hotel> hotelArray , Result result) {  //finds cheapest and best rated hotel
+        Optional<Hotel> maxCostHotel = hotelArray.stream().max(Comparator.comparingInt(hotel -> hotel.getTotalCost()));
+        Optional<Hotel> minRatingHotel = hotelArray.stream().min(Comparator.comparingInt(hotel -> hotel.getRating()));
+        for (Hotel hotel : hotelArray) {
+            if (hotel.getTotalCost() < maxCostHotel.get().getTotalCost() && hotel.getRating() > minRatingHotel.get().getRating()) {
+                result.setRating(hotel.getRating());
+                result.setHotelName(hotel.getHotelName());
+                result.setTotalCost(hotel.getTotalCost());
+            }
+        }
+        return result;
+    }
 }
