@@ -1,4 +1,8 @@
 package com.bridgelabz.hotelreservationproject;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.*;
+
 
 public class HotelReservation {
 
@@ -53,6 +57,17 @@ public class HotelReservation {
                 result.setTotalCost(hotel.getTotalCost());
             }
         }
+        return result;
+    }
+    
+    public Result findBestRatedHotel(ArrayList<Hotel> hotelArray , String dateS , String dateE) { //returns best rated hotel for a date range
+
+        Result result = new Result();
+        this.setCost(hotelArray , dateS , dateE);
+        Optional<Hotel> maxRatingHotel = hotelArray.stream().max(Comparator.comparingInt(hotel -> hotel.getRating()));
+        result.setHotelName(maxRatingHotel.get().getHotelName());
+        result.setTotalCost(maxRatingHotel.get().getTotalCost());
+        result.setRating(maxRatingHotel.get().getRating());
         return result;
     }
 }

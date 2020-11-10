@@ -3,6 +3,8 @@ package com.bridgelabz.hotelreservationproject;
 public class Result {
     String hotelName;
     int totalCost;
+    Integer rating;
+    
 
     public String getHotelName() {
         return hotelName;
@@ -19,4 +21,8 @@ public class Result {
     public void setTotalCost(int totalCost) {
         this.totalCost = totalCost;
     }
-}
+    
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+ }
